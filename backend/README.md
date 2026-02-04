@@ -53,26 +53,7 @@ Server will run on: `http://localhost:5000`
 4. Protected routes verify token on each request
 5. Token expires after 7 days (configurable)
 
-## 🗄️ Database Schema
 
-### Users Table
-```sql
-id (UUID, primary key)
-email (unique)
-password_hash
-created_at
-```
-
-### Todos Table
-```sql
-id (UUID, primary key)
-user_id (foreign key)
-title
-description
-status (pending/completed)
-created_at
-updated_at
-```
 
 ## 🛡️ Security Features
 - ✅ Password hashing with bcrypt

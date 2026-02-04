@@ -17,10 +17,6 @@ export default function Home() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   async function checkAuth() {
     const currentUser = await getCurrentUser();
     if (!currentUser) {
@@ -38,6 +34,10 @@ export default function Home() {
       setTodos(result.todos);
     }
   }
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   async function handleLogout() {
     await logout();
