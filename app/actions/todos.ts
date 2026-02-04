@@ -23,7 +23,7 @@ export interface TodoActionResponse {
 // Get all todos for current user
 export async function getTodos(): Promise<TodoActionResponse> {
   try {
-    const response = await fetchApi("/todos");
+    const response = await fetchApi("/api/todos");
 
     if (!response.ok) {
       if (response.status === 401) {
@@ -53,7 +53,7 @@ export async function createTodo(formData: FormData): Promise<TodoActionResponse
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
 
-    const response = await fetchApi("/todos", {
+    const response = await fetchApi("/api/todos", {
       method: "POST",
       body: JSON.stringify({ title, description }),
     });
@@ -124,7 +124,7 @@ export async function updateTodo(id: string, formData: FormData): Promise<TodoAc
 export async function toggleTodoStatus(id: string): Promise<TodoActionResponse> {
   try {
     // Call the dedicated toggle endpoint
-    const response = await fetchApi(`/todos/${id}/toggle`, {
+    const response = await fetchApi(`/api/todos/${id}/toggle`, {
       method: "PATCH", // Using PATCH for partial/state update
     });
 
@@ -154,7 +154,7 @@ export async function toggleTodoStatus(id: string): Promise<TodoActionResponse> 
 // Delete todo
 export async function deleteTodo(id: string): Promise<TodoActionResponse> {
   try {
-    const response = await fetchApi(`/todos/${id}`, {
+    const response = await fetchApi(`/api/todos/${id}`, {
       method: "DELETE",
     });
 

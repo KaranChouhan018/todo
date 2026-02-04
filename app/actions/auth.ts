@@ -20,7 +20,7 @@ export async function register(formData: FormData): Promise<ActionResponse> {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    const response = await fetchApi("/auth/register", {
+    const response = await fetchApi("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
@@ -58,7 +58,7 @@ export async function login(formData: FormData): Promise<ActionResponse> {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    const response = await fetchApi("/auth/login", {
+    const response = await fetchApi("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
@@ -107,7 +107,7 @@ export async function logout() {
 // Get current user
 export async function getCurrentUser() {
   try {
-    const response = await fetchApi("/auth/me");
+    const response = await fetchApi("/api/auth/me");
 
     if (!response.ok) {
       return null;
