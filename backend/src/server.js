@@ -11,7 +11,7 @@ const app = express();
 // Connect to database and initialize tables
 const startServer = async () => {
   await connectDB();
-  
+
   // Middleware
   app.use(cors({
     origin: config.frontendUrl,
@@ -31,6 +31,19 @@ const startServer = async () => {
       success: true,
       message: 'Server is running',
       timestamp: new Date().toISOString()
+    });
+  });
+
+  // Root route
+  app.get('/', (req, res) => {
+    res.status(200).json({
+      success: true,
+      message: 'Todo API is live 🚀',
+      docs: {
+        auth: '/api/auth',
+        todos: '/api/todos',
+        health: '/api/health'
+      }
     });
   });
 
